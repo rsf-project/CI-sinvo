@@ -25,7 +25,7 @@ class Add_admin extends CI_Controller
     public function tambah()
     {
         $query = "INSERT INTO tbl_user VALUES ('$_POST[id_user]','$_POST[user_nama]','$_POST[username]','$_POST[user_password]','$_POST[user_roleid]','$_POST[user_address]','$_POST[user_phone]','$_POST[user_created_at]')";
-        $result = pg_query($query);
+        $result = $this->db->query($query);
         redirect('admin/manage_account/index');
     }
 

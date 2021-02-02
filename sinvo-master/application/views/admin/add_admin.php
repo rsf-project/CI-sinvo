@@ -6,10 +6,16 @@
     <hr>
     <?php
     //mengambil id paling terakhir dari tabel user dan +1 ketika tambah akun
-    $query = pg_query("SELECT max(id_user) as id FROM tbl_user");
-    $data = pg_fetch_array($query);
-    $id = $data['id'];
-    $id++;
+    // $query = pg_query("SELECT max(id_user) as id FROM tbl_user");
+    // $data = pg_fetch_array($query);
+    // $id = $data['id'];
+    // $id++;
+    $query = $this->db->query("SELECT max(id_user) as id FROM tbl_user");
+    $rows = $query->result();
+    foreach ($rows as $row) {
+      $id = $row->id;
+    }
+    $id++
     ?>
     <form action="<?= base_url() . 'admin/add_admin/tambah' ?>" id="invoice_form" method="post">
         <div class="form-group">
