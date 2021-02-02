@@ -1,0 +1,11 @@
+superuser =
+username : owner
+pass     : owner
+
+admin =
+username : user
+pass     : user
+
+link =
+localhost/kape/auth/login
+
