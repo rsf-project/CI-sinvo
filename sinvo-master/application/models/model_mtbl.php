@@ -26,10 +26,10 @@ class Model_mtbl extends CI_Model
         $this->db->update($table, $data);
     }
 
-    public function hapus($mtbl_id) //($where, $table)
+    public function hapus($where, $table) //($mtbl_id)
     {
-        $sql = $this->db->query("SELECT delete_mtbl_order($mtbl_id)");
-        // $this->db->where($where);
-        // $this->db->delete($table);
+        // $sql = $this->db->query("SELECT delete_mtbl_order($mtbl_id)");
+        $this->db->where($where);
+        $this->db->delete($table);
     }
 }

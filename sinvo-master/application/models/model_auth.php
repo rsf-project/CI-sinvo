@@ -37,10 +37,10 @@ class Model_auth extends CI_Model
         $this->db->update($table, $data);
     }
 
-    public function hapus($id_user) //($where, $table)
+    public function hapus($where, $table) //($id_user)
     {
-        $sql = $this->db->query("SELECT delete_user($id_user)");
-        // $this->db->where($where);
-        // $this->db->delete($table);
+        // $sql = $this->db->query("SELECT delete_user($id_user)");
+        $this->db->where($where);
+        $this->db->delete($table);
     }
 }

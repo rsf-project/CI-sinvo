@@ -55,9 +55,9 @@ class Add_project extends CI_Controller
     //delete data didalam tabel emtbl_order
     public function hapus($mtbl_id)
     {
-        $this->model_mtbl->hapus($mtbl_id);
-        // $where = array('mtbl_id' => $mtbl_id);
-        // $this->model_mtbl->hapus($where, 'mtbl_order');
+        // $this->model_mtbl->hapus($mtbl_id);
+        $where = array('mtbl_id' => $mtbl_id);
+        $this->model_mtbl->hapus($where, 'mtbl_order');
         redirect('admin/manage_project/index');
     }
 }

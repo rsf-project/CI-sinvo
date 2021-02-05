@@ -67,9 +67,9 @@ class Add_admin extends CI_Controller
     }
     public function hapus($id_user)
     {
-        $this->model_auth->hapus($id_user);
-        // $where = array('id_user' => $id_user);
-        // $this->model_auth->hapus($where, 'tbl_user');
+        // $this->model_auth->hapus($id_user);
+        $where = array('id_user' => $id_user);
+        $this->model_auth->hapus($where, 'tbl_user');
         redirect('admin/manage_account/index');
     }
 }

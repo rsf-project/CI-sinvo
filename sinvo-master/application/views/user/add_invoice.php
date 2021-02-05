@@ -7,12 +7,17 @@
 
     <?php
     //untuk menampilkan kode invoice otomatis
-    $query = pg_query("SELECT SUBSTR(max(order_kode),-10) as kode FROM tbl_order");
-    $data = pg_fetch_assoc($query);
-    if ($data['kode'] == 0) {
+    // $query = pg_query("SELECT SUBSTR(max(order_kode),-10) as kode FROM tbl_order");
+    // $data = pg_fetch_assoc($query);
+    $query = $this->db->query("SELECT SUBSTR(max(order_kode),-10) as kode FROM tbl_order");
+    $datas = $query->result();
+    foreach ($datas as $d) {
+        $data = $d->kode;
+    }
+    if ($data == 0) {
         $kode = "0000000001";
     } else {
-        $maxID = $data['kode'];
+        $maxID = $data;
         $maxID++;
         if ($maxID < 10) {
             $kode = "000000000" . $maxID;
@@ -28,15 +33,27 @@
     }
 
     //untuk menampilkan id order otomatis
-    $query = pg_query("SELECT max(order_id) as id FROM tbl_order");
-    $data = pg_fetch_array($query);
-    $id = $data['id'];
+    // $query = pg_query("SELECT max(order_id) as id FROM tbl_order");
+    // $data = pg_fetch_array($query);
+    // $id = $data['id'];
+    // $id++;
+    $query = $this->db->query("SELECT max(order_id) as id FROM tbl_order");
+    $datas = $query->result();
+    foreach ($datas as $d) {
+        $id = $d->id;
+    }
     $id++;
 
     //untuk menampilkan id order item otomatis
-    $query = pg_query("SELECT max(order_item_id) as item_id FROM tbl_order_item");
-    $data = pg_fetch_array($query);
-    $item_id = $data['item_id'];
+    // $query = pg_query("SELECT max(order_item_id) as item_id FROM tbl_order_item");
+    // $data = pg_fetch_array($query);
+    // $item_id = $data['item_id'];
+    // $item_id++;
+    $query = $this->db->query("SELECT max(order_item_id) as item_id FROM tbl_order_item");
+    $datas = $query->result();
+    foreach ($datas as $d) {
+        $item_id = $d->item_id;
+    }
     $item_id++;
     ?>
 

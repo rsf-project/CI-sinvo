@@ -6,9 +6,15 @@
     <hr>
     <?php
     //untuk menampilkan id otomatis
-    $query = pg_query("SELECT max(expense_id) as id FROM tbl_expense");
-    $data = pg_fetch_array($query);
-    $id = $data['id'];
+    // $query = pg_query("SELECT max(expense_id) as id FROM tbl_expense");
+    // $data = pg_fetch_array($query);
+    // $id = $data['id'];
+    // $id++;
+    $query = $this->db->query("SELECT max(expense_id) as id FROM tbl_expense");
+    $rows = $query->result();
+    foreach ($rows as $row) {
+      $id = $row->id;
+    }
     $id++;
     ?>
 

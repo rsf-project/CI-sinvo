@@ -21,10 +21,10 @@ class Model_expense extends CI_Model
         $this->db->update($table, $data);
     }
 
-    public function hapus($expense_id) //($where, $table)
+    public function hapus($where, $table) //($expense_id)
     {
-        $sql = $this->db->query("SELECT delete_expense($expense_id)");
-        //$this->db->where($where);
-        //$this->db->delete($table);
+        // $sql = $this->db->query("SELECT delete_expense($expense_id)");
+        $this->db->where($where);
+        $this->db->delete($table);
     }
 }

@@ -67,8 +67,8 @@ class Add_expense extends CI_Controller
     //delete data didalam tabel expense
     public function hapus($expense_id)
     {
-        //$where = array('expense_id' => $expense_id);
-        $this->model_expense->hapus($expense_id); //($where, 'tbl_expense');
+        $where = array('expense_id' => $expense_id);
+        $this->model_expense->hapus($where, 'tbl_expense'); //($expense_id);
         redirect('admin/manage_expense/index');
     }
 }

@@ -38,7 +38,7 @@ class Add_invoice extends CI_Controller
 
         for ($count = 0; $count <= $_POST["total_item"]; $count++) {
             if ($order_id[$count] != '' && $order_project[$count] != '' && $order_description[$count] != '' && $order_item_qty[$count] != '' && $order_item_price[$count] != '' && $order_item_subtotal[$count] != '') {
-                $sql = pg_query("INSERT INTO tbl_order_item (order_item_id, order_id, order_project, order_description, order_item_qty, order_item_price, order_item_subtotal) 
+                $sql = $this->db->query("INSERT INTO tbl_order_item (order_item_id, order_id, order_project, order_description, order_item_qty, order_item_price, order_item_subtotal) 
                 VALUES('$order_item_id[$count]','$order_id[$count]','$order_project[$count]','$order_description[$count]','$order_item_qty[$count]','$order_item_price[$count]','$order_item_subtotal[$count]')");
             }
         }
@@ -53,7 +53,7 @@ class Add_invoice extends CI_Controller
         $order_date = $_POST["order_date"];
         $order_payment = $_POST["order_payment"];
 
-        $sql .= pg_query("INSERT INTO tbl_order VALUES ('$order_id','$order_kode','$order_nama','$order_alamat','$order_subtotal','$order_diskon','$order_great_total','$order_date','$order_payment')");
+        $sql .= $this->db->query("INSERT INTO tbl_order VALUES ('$order_id','$order_kode','$order_nama','$order_alamat','$order_subtotal','$order_diskon','$order_great_total','$order_date','$order_payment')");
         redirect('user/manage_invoice/index');
     }
 
@@ -79,7 +79,7 @@ class Add_invoice extends CI_Controller
         $order_item_price       = $_POST["order_item_price"];
         $order_item_subtotal    = $_POST["order_item_subtotal"];
 
-        $sql = pg_query("UPDATE tbl_order_item SET order_project = '$order_project',  order_description = ' $order_description', order_item_qty = '$order_item_qty', order_item_price = '$order_item_price', order_item_subtotal = '$order_item_subtotal' WHERE order_id = $order_id");
+        $sql = $this->db->query("UPDATE tbl_order_item SET order_project = '$order_project',  order_description = ' $order_description', order_item_qty = '$order_item_qty', order_item_price = '$order_item_price', order_item_subtotal = '$order_item_subtotal' WHERE order_id = $order_id");
 
         $order_id = $_POST["order_id"];
         $order_kode = $_POST["order_kode"];
@@ -91,7 +91,7 @@ class Add_invoice extends CI_Controller
         $order_date = $_POST["order_date"];
         $order_payment = $_POST["order_payment"];
 
-        $sql .= pg_query("UPDATE tbl_order SET order_kode = '$order_kode', order_nama = '$order_nama', order_alamat = '$order_alamat', order_subtotal = '$order_subtotal', order_diskon = '$order_diskon', order_great_total = '$order_great_total', order_date = '$order_date', order_payment = '$order_payment' WHERE order_id = $order_id");
+        $sql = $this->db->query("UPDATE tbl_order SET order_kode = '$order_kode', order_nama = '$order_nama', order_alamat = '$order_alamat', order_subtotal = '$order_subtotal', order_diskon = '$order_diskon', order_great_total = '$order_great_total', order_date = '$order_date', order_payment = '$order_payment' WHERE order_id = $order_id");
         redirect('user/manage_invoice/index');
     }
     //delete data didalam tabel order invoice

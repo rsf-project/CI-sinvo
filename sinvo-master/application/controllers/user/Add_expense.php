@@ -26,7 +26,7 @@ class Add_expense extends CI_Controller
     public function tambah()
     {
         $query = "INSERT INTO tbl_expense VALUES ('$_POST[expense_id]','$_POST[expense_nama]','$_POST[expense_qty]','$_POST[expense_harga]','$_POST[expense_total]','$_POST[expense_keterangan]','$_POST[expense_created_at]')";
-        $result = pg_query($query);
+        $result = $this->db->query($query);
         redirect('user/manage_expense/index');
     }
     public function edit($expense_id)
@@ -66,8 +66,8 @@ class Add_expense extends CI_Controller
     //delete data didalam tabel expense
     public function hapus($expense_id)
     {
-        //$where = array('expense_id' => $expense_id);
-        $this->model_expense->hapus($expense_id); //($where, 'tbl_expense');
+        $where = array('expense_id' => $expense_id);
+        $this->model_expense->hapus($where, 'tbl_expense'); //($expense_id);
         redirect('user/manage_expense/index');
     }
 }
